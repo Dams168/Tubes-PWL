@@ -16,10 +16,36 @@ class CabangSeeder extends Seeder
     public function run(): void
     {
         DB::table('cabang')->insert([
-            'nama_cabang' => 'Minimarket 1',
-            'lokasi_cabang' => 'Cianjur',
-            'created_at' => now(),
-            'updated_at' => now(),
+            [
+                'nama_cabang' => 'Minimarket 1',
+                'lokasi_cabang' => 'Cianjur',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_cabang' => 'Minimarket 2',
+                'lokasi_cabang' => 'Cianjur Selatan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_cabang' => 'Minimarket 3',
+                'lokasi_cabang' => 'Sukabumi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_cabang' => 'Minimarket 4',
+                'lokasi_cabang' => 'Cipanas',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_cabang' => 'Minimarket 5',
+                'lokasi_cabang' => 'Cikalong',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
