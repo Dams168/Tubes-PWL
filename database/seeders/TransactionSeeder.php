@@ -20,7 +20,8 @@ class TransactionSeeder extends Seeder
 
         for ($i = 0; $i < 100; $i++) {
             $jumlah = $faker->numberBetween(1, 5);
-            $id_barang = $faker->numberBetween(1, 10);
+            $id_barang = $faker->numberBetween(1, 25);
+            $id_cabang = $faker->numberBetween(1, 5);
             $barang = DB::table('products')->find($id_barang);
 
             if ($barang){
@@ -30,8 +31,13 @@ class TransactionSeeder extends Seeder
                     'id_barang' => $id_barang,
                     'jumlah' => $jumlah,
                     'subtotal' => $subtotal,
-                    'id_cabang' => $faker->numberBetween(1, 5),
+                    'id_cabang' => $id_cabang,
                 ]);
+                DB::table('products')->where('id', $id_barang)->decrement('stok', $jumlah);
+
+                // DB::table('products')
+                //     ->where(['id_barang' => $id_barang, 'id_cabang' => $id_cabang])
+                //     ->decrement('stok', $jumlah);
             }
         }
     }

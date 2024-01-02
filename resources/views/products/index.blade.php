@@ -16,6 +16,7 @@
                                 <th scope="col">Nama Barang</th>
                                 <th scope="col">Stock</th>
                                 <th scope="col">Harga</th>
+                                <th scope="col">Nama Cabang</th>
                             </tr>
                         </x-slot>
                         @foreach ($products as $product)
@@ -24,6 +25,7 @@
                             <td>{{ $product->nama_barang }}</td>
                             <td>{{ $product->stok }}</td>
                             <td>{{ $product->harga_jual }}</td>
+                            <td>{{ $product->branch->nama_cabang }}</td>
                         </tr>
                         @endforeach
                     </x-table>

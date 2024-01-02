@@ -14,7 +14,10 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('nama_barang', 100);
             $table->integer('stok');
-            $table->decimal('harga_jual');
+            $table->integer('harga_jual');
+            $table->unsignedBigInteger('id_cabang');
+
+            $table->foreign('id_cabang')->references('id')->on('branches');
         });
     }
 
