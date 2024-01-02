@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class CabangSeeder extends Seeder
+class BranchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('cabang')->insert([
+        DB::table('branches')->insert([
             [
                 'id' => 1,
                 'nama_cabang' => 'Jakarta Mart',

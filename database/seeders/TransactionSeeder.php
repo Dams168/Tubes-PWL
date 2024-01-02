@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 
-class TransaksiSeeder extends Seeder
+class TransactionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,11 +21,11 @@ class TransaksiSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             $jumlah = $faker->numberBetween(1, 5);
             $id_barang = $faker->numberBetween(1, 10);
-            $barang = DB::table('barang')->find($id_barang);
+            $barang = DB::table('products')->find($id_barang);
 
             if ($barang){
                 $subtotal = $jumlah * $barang->harga_jual;
-                DB::table('transaksi')->insert([
+                DB::table('transactions')->insert([
                     'tanggal_transaksi' => $faker->dateTimeBetween('2023-11-01', '2023-12-31'),
                     'id_barang' => $id_barang,
                     'jumlah' => $jumlah,

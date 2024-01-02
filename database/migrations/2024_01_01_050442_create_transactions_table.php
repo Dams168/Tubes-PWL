@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_barang');
             $table->date('tanggal_transaksi');
@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('subtotal');
             $table->unsignedBigInteger('id_cabang');
 
-            $table->foreign('id_barang')->references('id')->on('barang');
-            $table->foreign('id_cabang')->references('id')->on('cabang');
+            $table->foreign('id_barang')->references('id')->on('products');
+            $table->foreign('id_cabang')->references('id')->on('branches');
         });
     }
 
