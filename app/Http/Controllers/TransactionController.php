@@ -9,7 +9,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $data['transactions'] = Transaction::all();
+        $data['transactions'] = Transaction::with('branch')->orderBy('id_cabang', 'asc')->orderBy('tanggal_transaksi', 'asc')->get();
         return view('transactions.index', $data);
     }
 }

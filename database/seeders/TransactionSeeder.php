@@ -20,24 +20,25 @@ class TransactionSeeder extends Seeder
 
         for ($i = 0; $i < 100; $i++) {
             $jumlah = $faker->numberBetween(1, 5);
-            $id_barang = $faker->numberBetween(1, 25);
+            $nama_barang = $faker->randomElement(['Sabun', 'Sampo', 'Pasta Gigi', 'Tepung', 'Gula']);
             $id_cabang = $faker->numberBetween(1, 5);
-            $barang = DB::table('products')->find($id_barang);
+            $barang = DB::table('products')
+                ->where(['nama_barang' => $nama_barang, 'id_cabang' => $id_cabang])
+                ->first();
 
             if ($barang){
                 $subtotal = $jumlah * $barang->harga_jual;
                 DB::table('transactions')->insert([
                     'tanggal_transaksi' => $faker->dateTimeBetween('2023-11-01', '2023-12-31'),
-                    'id_barang' => $id_barang,
+                    'id_barang' => $barang->id,
                     'jumlah' => $jumlah,
                     'subtotal' => $subtotal,
                     'id_cabang' => $id_cabang,
                 ]);
-                DB::table('products')->where('id', $id_barang)->decrement('stok', $jumlah);
 
-                // DB::table('products')
-                //     ->where(['id_barang' => $id_barang, 'id_cabang' => $id_cabang])
-                //     ->decrement('stok', $jumlah);
+                DB::table('products')
+                    ->where(['id' => $barang->id, 'id_cabang' => $id_cabang])
+                    ->decrement('stok', $jumlah);
             }
         }
     }
