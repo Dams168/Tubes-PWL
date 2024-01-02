@@ -17,34 +17,29 @@ class CabangSeeder extends Seeder
     {
         DB::table('cabang')->insert([
             [
-                'nama_cabang' => 'Minimarket 1',
-                'lokasi_cabang' => 'Cianjur',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id' => 1,
+                'nama_cabang' => 'Jakarta Mart',
+                'lokasi_cabang' => 'Jakarta',
             ],
             [
-                'nama_cabang' => 'Minimarket 2',
-                'lokasi_cabang' => 'Cianjur Selatan',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id' => 2,
+                'nama_cabang' => 'Bogor Mart',
+                'lokasi_cabang' => 'Bogor',
             ],
             [
-                'nama_cabang' => 'Minimarket 3',
-                'lokasi_cabang' => 'Sukabumi',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id' => 3,
+                'nama_cabang' => 'Depok Mart',
+                'lokasi_cabang' => 'Depok',
             ],
             [
-                'nama_cabang' => 'Minimarket 4',
-                'lokasi_cabang' => 'Cipanas',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id' => 4,
+                'nama_cabang' => 'Tangerang Mart',
+                'lokasi_cabang' => 'Tangerang',
             ],
             [
-                'nama_cabang' => 'Minimarket 5',
-                'lokasi_cabang' => 'Cikalong',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id' => 5,
+                'nama_cabang' => 'Bekasi Mart',
+                'lokasi_cabang' => 'Bekasi',
             ],
         ]);
     }

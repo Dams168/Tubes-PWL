@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class TransaksiSeeder extends Seeder
 {
@@ -15,12 +16,23 @@ class TransaksiSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('transaksi')->insert([
-            'tanggal_transaksi' => now(),
-            'total_harga' => 20000,
-            'id_cabang' => 1,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $faker = Faker::create('id_ID');
+
+        for ($i = 0; $i < 100; $i++) {
+            $jumlah = $faker->numberBetween(1, 5);
+            $id_barang = $faker->numberBetween(1, 10);
+            $barang = DB::table('barang')->find($id_barang);
+
+            if ($barang){
+                $subtotal = $jumlah * $barang->harga_jual;
+                DB::table('transaksi')->insert([
+                    'tanggal_transaksi' => $faker->dateTimeBetween('2023-11-01', '2023-12-31'),
+                    'id_barang' => $id_barang,
+                    'jumlah' => $jumlah,
+                    'subtotal' => $subtotal,
+                    'id_cabang' => $faker->numberBetween(1, 5),
+                ]);
+            }
+        }
     }
 }

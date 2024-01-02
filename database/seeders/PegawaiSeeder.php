@@ -19,8 +19,6 @@ class PegawaiSeeder extends Seeder
             'nama_pegawai' => 'Pegawai 1',
             'jabatan' => 'Manajer',
             'id_cabang' => 1,
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
     }
 }

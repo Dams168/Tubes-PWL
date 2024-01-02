@@ -15,7 +15,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nama_cabang',100);
             $table->string('lokasi_cabang', 100);
-            $table->timestamps();
         });
     }
 

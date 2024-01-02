@@ -15,8 +15,6 @@ return new class extends Migration {
             $table->string('nama_pegawai', 100);
             $table->string('jabatan', 50);
             $table->unsignedBigInteger('id_cabang');
-            $table->timestamps();
-
             $table->foreign('id_cabang')->references('id')->on('cabang');
         });
     }

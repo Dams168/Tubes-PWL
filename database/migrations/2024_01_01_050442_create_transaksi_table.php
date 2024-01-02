@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_barang');
             $table->date('tanggal_transaksi');
-            $table->decimal('total_harga');
+            $table->integer('jumlah');
+            $table->integer('subtotal');
             $table->unsignedBigInteger('id_cabang');
-            $table->timestamps();
 
+            $table->foreign('id_barang')->references('id')->on('barang');
             $table->foreign('id_cabang')->references('id')->on('cabang');
         });
     }
