@@ -17,6 +17,15 @@
                     </x-nav-link>
                 </div>
 
+
+                @hasrole('owner')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('cabang')" :active="request()->routeIs('cabang')">
+                        {{ __('Cabang') }}
+                    </x-nav-link>
+                </div>
+                @endhasrole
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('product')" :active="request()->routeIs('product')">
                         {{ __('Product') }}
