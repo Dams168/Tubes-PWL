@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
@@ -34,6 +33,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('product');
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
+
+    Route::get('/products/print', [ProductController::class, 'print'])->name('product.print');
+    Route::get('/transactions/print', [TransactionController::class, 'print'])->name('transaction.print');
 });
 
 require __DIR__.'/auth.php';
