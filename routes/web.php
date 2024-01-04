@@ -38,4 +38,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/transactions/print', [TransactionController::class, 'print'])->name('transaction.print');
 });
 
+// hak owner
+Route::middleware('auth')->group(function () {
+    Route::view('/cabangs', 'cabang')->name('cabang')->middleware(['role:owner']); 
+});
+
+
+// hak manager 1
+Route::middleware('auth')->group(function () {
+// hak
+});
+
+// hak manager 2
+Route::middleware('auth')->group(function () {
+    // hak
+});
+
+    // hak manager 3
+Route::middleware('auth')->group(function () {
+    // hak
+});
+    
+
 require __DIR__.'/auth.php';
