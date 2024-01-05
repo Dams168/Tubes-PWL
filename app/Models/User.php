@@ -43,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class, 'user_branch', 'user_id', 'branch_id');
+    }
+
+    public function belongsToBranch(int $branchId): bool
+    {
+        return $this->branches()->where('branch_id', $branchId)->exists();
+    }
 }

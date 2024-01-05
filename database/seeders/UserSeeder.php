@@ -15,23 +15,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $role_owner = Role::create([
-            'name' => 'owner'
-        ]);
+        $roleOwner = Role::create(['name' => 'owner']);
+        $roleManager = Role::create(['name' => 'manager']);
 
-        $role_manager = Role::create([
-            'name' => 'manager1'
-        ]);
+        $permissionOwner = Permission::create(['name' => 'View-own-data']);
+        $permissionManager = Permission::create(['name' => 'Management-cabang']);
 
-        $role_manager = Role::create([
-            'name' => 'manager2'
-        ]);
+        $roleOwner->givePermissionTo($permissionOwner);
+        $roleManager->givePermissionTo($permissionManager);
 
-        $role_manager = Role::create([
-            'name' => 'manager3'
-        ]);
-
-        // membuat user
         $owner = User::create([
             'name' => 'Jayusmanr',
             'posisi' => 'owner',
@@ -44,42 +36,78 @@ class UserSeeder extends Seeder
 
         $owner->assignRole('owner');
 
-        $manager1 = User::create([
-            'name' => 'Adam',
-            'posisi' => 'Manager Cabang Jakarta',
-            'email' => 'manager1@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
 
-        $manager2 = User::create([
-            'name' => 'Fiqri',
-            'posisi' => 'Manager Cabang Bogor',
-            'email' => 'manager2@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $managerData = [
+            [
+                'name' => 'Adam',
+                'posisi' => 'Manager Cabang Jakarta',
+                'email' => 'managerjakarta@gmail.com',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Fiqri',
+                'posisi' => 'Manager Cabang Bogor',
+                'email' => 'managerbogor@gmail.com',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Syania',
+                'posisi' => 'Manager Cabang Depok',
+                'email' => 'managerdepok@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Syania',
+                'posisi' => 'Manager Cabang Tangerang',
+                'email' => 'managertangerang@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Syania',
+                'posisi' => 'Manager Cabang Bekasi',
+                'email' => 'managerbekasi@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ];
 
-        $manager3 = User::create([
-            'name' => 'Syania',
-            'posisi' => 'Manager Cabang Cianjur',
-            'email' => 'manager3@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        foreach ($managerData as $managerInfo) {
+            $manager = User::create($managerInfo);
+            $manager->assignRole('manager');
 
+            switch ($managerInfo['posisi']) {
+                case 'Manager Cabang Jakarta':
+                    $manager->branches()->attach(1);
+                    break;
 
-        $manager1->assignRole('manager1');
-        $manager2->assignRole('manager2');
-        $manager3->assignRole('manager3');
+                case 'Manager Cabang Bogor':
+                    $manager->branches()->attach(2);
+                    break;
 
+                case 'Manager Cabang Depok':
+                    $manager->branches()->attach(3);
+                    break;
 
+                case 'Manager Cabang Tangerang':
+                    $manager->branches()->attach(4);
+                    break;
 
+                case 'Manager Cabang Bekasi':
+                    $manager->branches()->attach(5);
+                    break;
+            }
+        }
     }
 }
